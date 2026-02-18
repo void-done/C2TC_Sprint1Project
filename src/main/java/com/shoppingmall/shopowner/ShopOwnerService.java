@@ -1,35 +1,28 @@
 package com.shoppingmall.shopowner;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class ShopOwnerService {
 
     @Autowired
-    private ShopOwnerRepository repo;
+    private ShopOwnerRepository repository;
 
-   
     public List<ShopOwner> listAll() {
-        return repo.findAll();
+        return repository.findAll();
     }
 
-    
     public void save(ShopOwner shopOwner) {
-        repo.save(shopOwner);
+        repository.save(shopOwner);
     }
 
-    
     public ShopOwner get(Integer id) {
-        return repo.findById(id).orElseThrow(() -> 
-            new NoSuchElementException("Shop Owner not found with ID: " + id));
+        return repository.findById(id).get();
     }
 
-    
     public void delete(Integer id) {
-        repo.deleteById(id);
+        repository.deleteById(id);
     }
 }

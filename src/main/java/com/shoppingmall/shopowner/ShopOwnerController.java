@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/shopowners")
 public class ShopOwnerController {
@@ -34,8 +35,9 @@ public class ShopOwnerController {
 
     
     @PostMapping
-    public void add(@RequestBody ShopOwner shopOwner) {
+    public ShopOwner add(@RequestBody ShopOwner shopOwner) {
         service.save(shopOwner);
+        return shopOwner;
     }
 
     
